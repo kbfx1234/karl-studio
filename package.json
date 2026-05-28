@@ -4,9 +4,9 @@
   "version": "0.1.0",
   "type": "module",
   "description": "Personal portfolio site of Karl (佳飞) — autonomous driving engineer, embodied AI explorer, father of one.",
-  "author": "Karl <karl@example.com> (https://github.com/kbfx1234)",
+  "author": "Karl (佳飞) <kbfx1234@gmail.com> (https://github.com/kbfx1234)",
   "license": "MIT",
-  "homepage": "https://github.com/kbfx1234/karl-studio",
+  "homepage": "https://karl-studio.vercel.app",
   "repository": {
     "type": "git",
     "url": "https://github.com/kbfx1234/karl-studio.git"

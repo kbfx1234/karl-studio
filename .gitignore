@@ -49,3 +49,7 @@ Thumbs.db
 
 # Research artifacts — kept locally, not pushed to GitHub
 /reference/
+
+# Working notes — design plan, prompts, deployment scribbles. Local only.
+/PLAN.md
+/docs/
