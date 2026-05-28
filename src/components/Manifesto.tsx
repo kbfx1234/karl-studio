@@ -2,7 +2,7 @@ import { manifesto } from '../data/site'
 
 export function Manifesto() {
   return (
-    <section className="relative flex h-full flex-col justify-center px-8 lg:px-12">
+    <section aria-label="Manifesto" className="relative flex h-full flex-col justify-center px-8 lg:px-12">
       <h2 className="text-display mx-auto max-w-6xl text-[clamp(1.6rem,3.6vw,3.4rem)]">
         {manifesto.lines.map((line) => (
           <span key={line} className="block">

@@ -16,9 +16,16 @@
     <meta name="twitter:title" content="Karl · Studio" />
     <meta name="twitter:description" content="Building machines that move. Raising someone still learning to walk." />
     <meta name="twitter:image" content="https://karl-studio.vercel.app/images/main-stage-1024w.webp" />
+    <!-- Preload the LCP image (hero background) so it starts downloading at <head> parse -->
+    <link rel="preload" as="image" href="/images/main-stage-1920w.webp"
+          imagesrcset="/images/main-stage-1024w.webp 1024w, /images/main-stage-1920w.webp 1920w, /images/main-stage-3000w.webp 3000w, /images/main-stage-5000w.webp 5000w"
+          imagesizes="100vw" fetchpriority="high" />
+
+    <!-- Fonts: trimmed to weights we actually use, with display=swap to unblock paint -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Fraunces:wght@200;300;400&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Noto+Sans+SC:wght@400;500&display=swap" rel="stylesheet" />
+
     <title>Karl · Studio</title>
   </head>
   <body>

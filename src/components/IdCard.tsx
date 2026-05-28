@@ -131,10 +131,12 @@ export function IdCard() {
     >
       <div
         ref={rope}
+        aria-hidden="true"
         className="mx-auto h-20 w-px bg-fg/40"
       />
       <div
         ref={tip}
+        aria-hidden="true"
         className="mx-auto -mt-1 h-3 w-3 rotate-45 bg-fg-muted/60"
       />
 

@@ -12,7 +12,10 @@ interface ChapterProps {
 
 export function Chapter(props: ChapterProps) {
   return (
-    <section className="relative flex h-full flex-col justify-between px-8 pb-24 pt-32 lg:px-12 lg:pb-28">
+    <section
+      aria-label={`Chapter ${props.index} of ${props.total}: ${props.title}`}
+      className="relative flex h-full flex-col justify-between px-8 pb-24 pt-32 lg:px-12 lg:pb-28"
+    >
       {/* Top meta row */}
       <div className="flex items-start justify-between font-mono text-[11px] uppercase tracking-widest text-fg-muted">
         <div>

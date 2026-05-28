@@ -72,6 +72,7 @@ export function Hero() {
   return (
     <section
       ref={root}
+      aria-label="Introduction"
       className="relative flex h-full flex-col justify-end px-8 pb-24 pt-32 lg:px-12 lg:pb-28"
     >
       {/* Right-side eyebrow lines (hidden on mobile to save room) */}
