@@ -5,6 +5,7 @@ import { IdCard } from './components/IdCard'
 import { Stage } from './components/Stage'
 import { FeaturedWork } from './components/FeaturedWork'
 import { FooterCta } from './components/FooterCta'
+import { featured } from './data/site'
 
 export default function App() {
   return (
@@ -14,7 +15,7 @@ export default function App() {
       <div className="relative z-10">
         <Navbar />
         <Stage />
-        <FeaturedWork />
+        {featured.enabled && <FeaturedWork />}
         <FooterCta />
       </div>
     </SmoothScroll>

@@ -11,9 +11,7 @@ export const site = {
     tagline: 'A studio of one.',
   },
   nav: [
-    { label: 'WORK', href: '#work' },
-    { label: 'STUDIO', href: '#studio' },
-    { label: 'WRITING', href: '#writing' },
+    { label: 'STUDIO', href: '#top' },
     { label: 'CONTACT', href: '#contact' },
   ],
   cta: { label: 'ENTER STUDIO', href: '#enter' },
@@ -145,6 +143,8 @@ export const chapters = [
 ] as const
 
 export const featured = {
+  /** Set to true once a real project is ready to ship. */
+  enabled: false,
   eyebrow: 'FEATURED WORK',
   count: '01 / 01',
   year: '2026',
