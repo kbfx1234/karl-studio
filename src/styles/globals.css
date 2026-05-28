@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    background: #000;
+  }
+
+  body {
+    color: #fff;
+    font-family: 'Inter', 'Noto Sans SC', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    background: transparent;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgba(255, 255, 255, 0.18);
+    color: #fff;
+  }
+}
+
+@layer components {
+  .text-eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-widest text-fg-dim;
+  }
+
+  .text-meta {
+    @apply font-mono text-xs uppercase tracking-widest text-fg-muted;
+  }
+
+  .nav-link {
+    @apply relative font-mono text-xs uppercase tracking-widest text-fg-muted transition-colors hover:text-fg;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 h-px w-0 bg-fg transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .cta-button {
+    @apply inline-flex items-center gap-3 border border-fg/20 bg-transparent px-5 py-2.5 font-mono text-xs uppercase tracking-widest text-fg transition-all hover:bg-fg hover:text-bg;
+  }
+
+  .cta-button-light {
+    @apply inline-flex items-center gap-3 bg-fg px-5 py-2.5 font-mono text-xs uppercase tracking-widest text-bg transition-all hover:bg-fg-muted;
+  }
+}
+
+/* Custom utilities */
+.text-display {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+
+.text-display-thin {
+  font-family: 'Fraunces', 'Inter', sans-serif;
+  font-weight: 200;
+  letter-spacing: -0.01em;
+  line-height: 1.0;
+}
