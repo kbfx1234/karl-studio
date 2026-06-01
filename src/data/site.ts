@@ -14,7 +14,7 @@ export const site = {
     { label: 'STUDIO', href: '#top' },
     { label: 'CONTACT', href: '#contact' },
   ],
-  cta: { label: 'ENTER STUDIO', href: '#enter' },
+  cta: { label: 'ENTER STUDIO', href: '#story' },
   social: {
     github: 'https://github.com/kbfx1234',
     email: 'mailto:kbfx1234@gmail.com',

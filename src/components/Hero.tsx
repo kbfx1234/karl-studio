@@ -2,6 +2,9 @@ import { useRef } from 'react'
 import { gsap, SplitText, useGSAP } from '../lib/gsap'
 import { hero } from '../data/site'
 
+type HeroProps = {
+  variant?: 'cinematic' | 'fallback'
+}
 
 /**
  * Hero — entry section.
@@ -10,11 +13,14 @@ import { hero } from '../data/site'
  *  - main 3 lines: char-level blur reveal (the SplitText magic)
  *  - active block + meta + CTA: post-stagger fade
  */
-export function Hero() {
+export function Hero({ variant = 'cinematic' }: HeroProps) {
   const root = useRef<HTMLDivElement>(null)
+  const isFallback = variant === 'fallback'
 
   useGSAP(
     () => {
+      if (isFallback) return
+
       // Char-level blur reveal for the three hero lines
       const lines = gsap.utils.toArray<HTMLElement>('[data-hero-line]')
       const splits = lines.map(
@@ -66,14 +72,18 @@ export function Hero() {
         splits.forEach((s) => s.revert())
       }
     },
-    { scope: root }
+    { scope: root, dependencies: [isFallback] }
   )
 
   return (
     <section
       ref={root}
       aria-label="Introduction"
-      className="relative flex h-full flex-col justify-end px-8 pb-24 pt-32 lg:px-12 lg:pb-28"
+      className={
+        isFallback
+          ? 'relative flex min-h-[100svh] flex-col justify-end px-6 pb-20 pt-28 sm:px-8'
+          : 'relative flex h-full flex-col justify-end px-8 pb-24 pt-32 lg:px-12 lg:pb-28'
+      }
     >
       {/* Right-side eyebrow lines (hidden on mobile to save room) */}
       <div
@@ -88,10 +98,16 @@ export function Hero() {
       </div>
 
       {/* Bottom-left main copy */}
-      <div className="relative max-w-5xl">
-        <h1 className="text-display text-[clamp(2.4rem,5.6vw,5rem)]">
+      <div className={isFallback ? 'relative max-w-full' : 'relative max-w-5xl'}>
+        <h1
+          className={
+            isFallback
+              ? 'text-display max-w-full break-words text-[clamp(2rem,9.2vw,3.2rem)] [text-wrap:balance]'
+              : 'text-display text-[clamp(2.4rem,5.6vw,5rem)]'
+          }
+        >
           {hero.lines.map((line) => (
-            <span key={line} className="block overflow-hidden">
+            <span key={line} className={isFallback ? 'block' : 'block overflow-hidden'}>
               <span data-hero-line className="block">
                 {line}
               </span>
@@ -99,7 +115,13 @@ export function Hero() {
           ))}
         </h1>
 
-        <div className="mt-10 flex items-end justify-between">
+        <div
+          className={
+            isFallback
+              ? 'mt-9 flex flex-col items-start gap-6'
+              : 'mt-10 flex items-end justify-between'
+          }
+        >
           <div className="text-meta" data-hero-meta>
             <p>{hero.scrollHint}</p>
           </div>
@@ -112,15 +134,19 @@ export function Hero() {
 
       {/* Bottom-right meta */}
       <div
-        className="absolute bottom-28 right-8 text-right lg:bottom-28 lg:right-12"
+        className={
+          isFallback
+            ? 'hidden'
+            : 'absolute bottom-28 right-8 text-right lg:bottom-28 lg:right-12'
+        }
         data-hero-meta
       >
         <p className="text-meta">{hero.rightHint}</p>
       </div>
 
-      {/* Bottom-far-left active block */}
+      {/* Desktop active block */}
       <div
-        className="absolute bottom-28 left-8 hidden lg:left-12 lg:block"
+        className="absolute left-8 top-36 hidden lg:left-12 lg:top-40 lg:block"
         data-hero-active
       >
         <p className="text-meta mb-4">● {hero.active.status}</p>

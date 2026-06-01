@@ -74,29 +74,21 @@ function CinematicStage() {
             const [start, end] = layerWindows[idx]
             const fadeIn = 0.022
             const fadeOut = 0.022
-            let alpha = 0
-            let y = 24
+            const state = (() => {
+              if (p < start - fadeIn) return { alpha: 0, y: 24 }
+              if (p < start) {
+                const t = (p - (start - fadeIn)) / fadeIn
+                return { alpha: t, y: 24 * (1 - t) }
+              }
+              if (p < end - fadeOut) return { alpha: 1, y: 0 }
+              if (p < end) {
+                const t = (p - (end - fadeOut)) / fadeOut
+                return { alpha: 1 - t, y: -16 * t }
+              }
+              return { alpha: 0, y: -16 }
+            })()
 
-            if (p < start - fadeIn) {
-              alpha = 0
-              y = 24
-            } else if (p < start) {
-              const t = (p - (start - fadeIn)) / fadeIn
-              alpha = t
-              y = 24 * (1 - t)
-            } else if (p < end - fadeOut) {
-              alpha = 1
-              y = 0
-            } else if (p < end) {
-              const t = (p - (end - fadeOut)) / fadeOut
-              alpha = 1 - t
-              y = -16 * t
-            } else {
-              alpha = 0
-              y = -16
-            }
-
-            gsap.set(el, { autoAlpha: alpha, y })
+            gsap.set(el, { autoAlpha: state.alpha, y: state.y })
           })
         },
       })
@@ -116,6 +108,11 @@ function CinematicStage() {
       className="stage-wrapper relative"
       style={{ height: '600vh' }}
     >
+      <div
+        id="story"
+        aria-hidden="true"
+        className="pointer-events-none absolute left-0 top-[18%] h-px w-px"
+      />
       <div
         ref={stageRef}
         className="stage relative h-screen w-full overflow-hidden"
@@ -139,11 +136,11 @@ function CinematicStage() {
 /** Mobile / reduced-motion: plain stacked sections. */
 function FallbackStage() {
   return (
-    <div id="top" className="stage-wrapper-fallback relative">
-      <Hero />
-      <Manifesto />
+    <div id="top" className="stage-wrapper-fallback relative overflow-x-hidden">
+      <Hero variant="fallback" />
+      <Manifesto id="story" variant="fallback" />
       {chapters.map((c) => (
-        <Chapter key={c.index} {...c} />
+        <Chapter key={c.index} variant="fallback" {...c} />
       ))}
     </div>
   )
